@@ -59,6 +59,7 @@ public class PrometheusRenamer : EditorWindow
 		foreach (var gameObject in gameObjects)
 		{
 			gameObject.name = renameTarget + (renameNumbered ? ("_" + counter.ToString()) : "");
+			counter++;
 		}
 	}
 
