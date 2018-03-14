@@ -54,6 +54,7 @@ public class PrometheusRenamer : EditorWindow
 	private void Rename()
 	{
 		var gameObjects = Selection.gameObjects;
+		System.Array.Sort (gameObjects, new UnityTransformSort ());
 		int counter = 0;
 		Undo.RecordObjects (gameObjects, "Renaming to " + renameTarget);
 		foreach (var gameObject in gameObjects)
@@ -74,6 +75,17 @@ public class PrometheusRenamer : EditorWindow
 		foreach (var gameObject in gameObjects)
 		{
 			gameObject.name = gameObject.name.Replace (replaceSearch, replaceTarget);
+		}
+	}
+
+	public class UnityTransformSort : System.Collections.Generic.IComparer<GameObject>
+	{
+		public int Compare(GameObject lhs, GameObject rhs)
+		{
+			if (lhs == rhs) return 0;
+			if (lhs == null) return -1;
+			if (rhs == null) return 1;
+			return (lhs.transform.GetSiblingIndex() > rhs.transform.GetSiblingIndex()) ? 1 : -1;
 		}
 	}
 }
