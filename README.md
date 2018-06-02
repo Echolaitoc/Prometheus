@@ -1,4 +1,4 @@
-Version 1.0 (14.03.2017)
+Version 1.0 (14.03.2018)
 
 Prometheus is a simple game object renaming tool for Unity.
 The tool can be accessed via Window/Prometheus Rename
